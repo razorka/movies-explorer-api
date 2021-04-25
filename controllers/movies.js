@@ -22,7 +22,7 @@ const getMovies = (req, res, next) => {
       throw new NotFoundError(err.message);
     })
     .catch(next);
-}
+};
 
 const createMovie = (req, res, next) => {
   const owner = req.user._id;
@@ -36,7 +36,7 @@ const createMovie = (req, res, next) => {
         throw new BadRequestError(err.message);
       } else if (err.code === 11000) {
         throw new ConflictError(err.message);
-      };
+      }
     })
     .catch(next);
 };
@@ -61,9 +61,10 @@ const deleteMovie = (req, res, next) => {
       }
     })
     .catch(next);
-}
+};
 
 module.exports = {
   getMovies,
-}
-
+  createMovie,
+  deleteMovie,
+};

@@ -40,7 +40,7 @@ const MOVIE_SCHEMA_REQUIRED_MESSAGES = {
   MOVIE_ID: '_id фильма, который содержится в ответе сервиса MoviesExplorer. Обязательное поле',
   NAME_RU: 'Название фильма на русском языке. Обязательное поле-строка',
   NAME_EN: 'Название фильма на английском языке. Обязательное поле-строка',
-}
+};
 const MOVIE_SCHEMA_VALIDATE_MESSAGES = {
   IMAGE: 'не является URL адресом для постера к фильму',
   TRAILER: 'не является URL адресом для трейлера к фильму',
@@ -66,4 +66,4 @@ module.exports = {
   MOVIE_SCHEMA_VALIDATE_MESSAGES,
   REQUEST_LOG_FILENAME,
   ERROR_LOG_FILENAME,
-}
+};

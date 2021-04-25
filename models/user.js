@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
     required: [true, USER_SCHEMA_REQUIRED_MESSAGES.EMAIL],
     unique: true,
     validate: {
-      validator (v) {
+      validator(v) {
         return isEmail(v);
       },
       message: (props) => `${props.value} ${USER_SCHEMA_VALIDATE_MESSAGES.EMAIL}`,
@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, USER_SCHEMA_REQUIRED_MESSAGES.PASSWORD],
     validate: {
-      validator (v) {
+      validator(v) {
         return isStrongPassword(v);
       },
       message: () => USER_SCHEMA_VALIDATE_MESSAGES.PASSWORD,
@@ -40,8 +40,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, USER_SCHEMA_REQUIRED_MESSAGES.NAME],
     validate: {
-      validator (v) {
-        return isLength(v, {min: 2, max: 30});
+      validator(v) {
+        return isLength(v, { min: 2, max: 30 });
       },
       message: (props) => `${props.value} ${USER_SCHEMA_VALIDATE_MESSAGES.NAME}`,
     },

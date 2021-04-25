@@ -45,7 +45,7 @@ const updateCurrentUser = (req, res, next) => {
       }
     })
     .catch(next);
-}
+};
 
 const login = (req, res, next) => {
   const { email, password } = req.body;
@@ -90,7 +90,6 @@ const createUser = (req, res, next) => {
     })
     .catch(next);
 };
-
 
 module.exports = {
   getCurrentUser,

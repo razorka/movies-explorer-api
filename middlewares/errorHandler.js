@@ -19,7 +19,7 @@ const errorHandler = (err, req, res, next) => {
   }
   if (next) {
     next();
-  };
+  }
 };
 
 module.exports = errorHandler;

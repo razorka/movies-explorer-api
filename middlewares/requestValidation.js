@@ -8,10 +8,10 @@ const {
 
 const urlValidator = (value) => {
   if (!isURL(value)) {
-    throw new CelebrateError(`${value} ${BAD_URL}`)
+    throw new CelebrateError(`${value} ${BAD_URL}`);
   }
   return value;
-}
+};
 
 const validateId = celebrate({
   params: Joi.object().keys({
@@ -44,7 +44,8 @@ const validateCreateMovie = celebrate({
 
 const validateDeleteMovie = celebrate({
   params: Joi.object().keys({
-    movieId: Joi.string().required().alphanum().length(24).hex(),
+    movieId: Joi.string().required().alphanum().length(24)
+      .hex(),
   }),
 });
 

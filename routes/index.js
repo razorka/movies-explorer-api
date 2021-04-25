@@ -29,6 +29,6 @@ router.use(auth, movieRouter);
 
 router.use('/*', () => {
   throw new NotFoundError(NOT_FOUND_ERROR_MESSAGE);
-})
+});
 
 module.exports = router;

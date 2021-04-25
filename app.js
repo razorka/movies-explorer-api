@@ -4,21 +4,20 @@ const express = require('express');
 
 const { errors } = require('celebrate');
 
+const bodyParser = require('body-parser');
+
+const cors = require('cors');
+
+const mongoose = require('mongoose');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const errorHandler = require('./middlewares/errorHandler');
 
-const mongoose = require('mongoose');
-
 require('dotenv').config();
-
-const bodyParser = require('body-parser');
 
 const {
   MONGO_DB_ADDRESS,
 } = require('./utils/constants');
-
-const cors = require('cors');
 
 const router = require('./routes/index');
 
@@ -42,8 +41,8 @@ mongoose.connect(MONGO_DB_ADDRESS, {
   useUnifiedTopology: true,
 });
 
-//app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
 

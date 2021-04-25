@@ -2,12 +2,12 @@ const userRouter = require('express').Router();
 
 const {
   validateId,
-  validateUpdateCurrentUser
+  validateUpdateCurrentUser,
 } = require('../middlewares/requestValidation');
 
 const {
   getCurrentUser,
-  updateCurrentUser
+  updateCurrentUser,
 } = require('../controllers/users');
 
 userRouter.get('/users/me', validateId, getCurrentUser);
