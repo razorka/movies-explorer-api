@@ -11,6 +11,6 @@ const {
 } = require('../controllers/users');
 
 userRouter.get('/users/me', validateId, getCurrentUser);
-userRouter.put('/users/me', validateUpdateCurrentUser, updateCurrentUser);
+userRouter.patch('/users/me', validateUpdateCurrentUser, updateCurrentUser);
 
 module.exports = userRouter;
