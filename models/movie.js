@@ -1,74 +1,79 @@
 const mongoose = require('mongoose');
 const isURL = require('validator/lib/isURL');
 
+const {
+  MOVIE_SCHEMA_REQUIRED_MESSAGES,
+  MOVIE_SCHEMA_VALIDATE_MESSAGES,
+} = require('../utils/constants');
+
 const movieSchema = new mongoose.Schema({
   country: {
     type: String,
-    required: [true, 'страна создания фильма. Обязательное поле-строка'],
+    required: [true, MOVIE_SCHEMA_REQUIRED_MESSAGES.COUNTRY],
   },
   director: {
     type: String,
-    required: [true, 'режиссёр фильма. Обязательное поле-строка'],
+    required: [true, MOVIE_SCHEMA_REQUIRED_MESSAGES.DIRECTOR],
   },
   duration: {
     type: Number,
-    required: [true, 'длительность фильма. Обязательное поле-число'],
+    required: [true, MOVIE_SCHEMA_REQUIRED_MESSAGES.DURATION],
   },
   year: {
     type: String,
-    required: [true, 'год выпуска фильма. Обязательное поле-строка'],
+    required: [true, MOVIE_SCHEMA_REQUIRED_MESSAGES.YEAR],
   },
   description: {
     type: String,
-    required: [true, 'описание фильма. Обязательное поле-строка'],
+    required: [true, MOVIE_SCHEMA_REQUIRED_MESSAGES.DESCRIPTION],
   },
   image: {
     type: String,
-    required: [true, 'ссылка на постер к фильму. Обязательное поле-строка'],
+    required: [true, MOVIE_SCHEMA_REQUIRED_MESSAGES.IMAGE],
     validate: {
       validator (v) {
         return isURL(v);
       },
-      message: (props) => `${props.value} не является URL адресом`,
+      message: (props) => `${props.value} ${MOVIE_SCHEMA_VALIDATE_MESSAGES.IMAGE}`,
     },
   },
   trailer: {
     type: String,
-    required: [true, 'ссылка на трейлер фильма. Обязательное поле-строка'],
+    required: [true, MOVIE_SCHEMA_REQUIRED_MESSAGES.TRAILER],
     validate: {
       validator (v) {
         return isURL(v);
       },
-      message: (props) => `${props.value} не является URL адресом для трейлера к фильму`,
+      message: (props) => `${props.value} ${MOVIE_SCHEMA_VALIDATE_MESSAGES.TRAILER}`,
     },
   },
   thumbnail: {
     type: String,
-    required: [true, 'миниатюрное изображение постера к фильму. Обязательное поле-строка'],
+    required: [true, MOVIE_SCHEMA_REQUIRED_MESSAGES.THUMBNAIL],
     validate: {
       validator (v) {
         return isURL(v);
       },
-      message: (props) => `${props.value} не является URL адресом для миниатюрного изображения постера к фильму`,
+      message: (props) => `${props.value} ${MOVIE_SCHEMA_VALIDATE_MESSAGES.THUMBNAIL}`,
     },
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
-    required: [true, '_id пользователя, который сохранил фильм. Обязательное поле'],
+    required: [true, MOVIE_SCHEMA_REQUIRED_MESSAGES.OWNER],
   },
   movieId: {
     type: Number,
     unique: true,
-    required: [true, '_id фильма, который содержится в ответе сервиса MoviesExplorer. Обязательное поле'],
+    required: [true, MOVIE_SCHEMA_REQUIRED_MESSAGES.MOVIE_ID],
   },
   nameRU: {
     type: String,
-    required: [true, 'название фильма на русском языке. Обязательное поле-строка'],
+    required: [true, MOVIE_SCHEMA_REQUIRED_MESSAGES.NAME_RU],
   },
   nameEN: {
     type: String,
-    required: [true, 'название фильма на английском языке. Обязательное поле-строка'],
+    required: [true, MOVIE_SCHEMA_REQUIRED_MESSAGES.NAME_EN],
   },
 });
 
