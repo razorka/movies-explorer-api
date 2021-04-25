@@ -3,6 +3,7 @@ const INTERNAL_SERVER_ERROR = 'На сервере произошла ошибк
 const BAD_URL = 'не является URL адресом';
 const NOT_FOUND_MOVIE_ERROR_MESSAGE = 'Нет фильма с таким id';
 const VALIDATION_ERROR_NAME = 'ValidationError';
+const ERROR_KIND_OBJECT_ID = 'ObjectId';
 const FORBIDDEN_DELETE_MOVIE_MESSAGE = 'Нет доступа к удалению фильма';
 const NOT_AUTH_ERROR = 'Необходима авторизация';
 const NOT_AUTH_ERROR_WRONG_EMAIL_PASSWORD = 'Неправильные почта или пароль';
