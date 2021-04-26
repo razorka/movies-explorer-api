@@ -13,7 +13,8 @@ const ERROR_LOG_FILENAME = 'error.log';
 const MONGO_DB_ADDRESS = 'mongodb://localhost:27017/bitfilmsdb';
 const PORT_NUMBER = 3000;
 const ALLOWED_CORS = [
-  'http://localhost:3001',
+  'http://localhost:3000',
+  'api.movies-razorka.nomoredomains.icu',
 ];
 
 const USER_SCHEMA_REQUIRED_MESSAGES = {
