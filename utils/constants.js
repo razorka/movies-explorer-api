@@ -12,10 +12,6 @@ const ERROR_LOG_FILENAME = 'error.log';
 
 const MONGO_DB_ADDRESS = 'mongodb://localhost:27017/bitfilmsdb';
 const PORT_NUMBER = 3000;
-const ALLOWED_CORS = [
-  'http://localhost:3000',
-  'api.movies-razorka.nomoredomains.icu',
-];
 
 const USER_SCHEMA_REQUIRED_MESSAGES = {
   EMAIL: 'Поле "email - электронная почта" является обязательным',
@@ -60,7 +56,6 @@ module.exports = {
   NOT_AUTH_ERROR_WRONG_EMAIL_PASSWORD,
   MONGO_DB_ADDRESS,
   PORT_NUMBER,
-  ALLOWED_CORS,
   USER_SCHEMA_REQUIRED_MESSAGES,
   USER_SCHEMA_VALIDATE_MESSAGES,
   MOVIE_SCHEMA_REQUIRED_MESSAGES,
