@@ -40,7 +40,7 @@ const updateCurrentUser = (req, res, next) => {
       res.status(200).send(user);
     })
     .catch((err) => {
-      if (err.name === 'BadRequestError') {
+      if (err.name === 'ValidationError') {
         throw new BadRequestError(BAD_REQUEST);
       } else if (err.name === 'CastError') {
         throw new BadRequestError(INVALID_USER_ID_MESSAGE);

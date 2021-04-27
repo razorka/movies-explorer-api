@@ -7,7 +7,6 @@ const ForbiddenError = require('../errors/ForbiddenError');
 
 const {
   NOT_FOUND_MOVIE_ERROR_MESSAGE,
-  VALIDATION_ERROR_NAME,
   FORBIDDEN_DELETE_MOVIE_MESSAGE,
 } = require('../utils/constants');
 
@@ -32,7 +31,7 @@ const createMovie = (req, res, next) => {
       res.status(201).send({ data: movie });
     })
     .catch((err) => {
-      if (err.name === VALIDATION_ERROR_NAME) {
+      if (err.name === 'ValidationError') {
         throw new BadRequestError(err.message);
       } else if (err.code === 11000) {
         throw new ConflictError(err.message);
