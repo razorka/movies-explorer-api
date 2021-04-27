@@ -10,7 +10,7 @@ const ConflictError = require('../errors/ConflictError');
 const NotAuthError = require('../errors/NotAuthError');
 
 const {
-  VALIDATION_ERROR_NAME,
+  BAD_REQUEST, INVALID_USER_ID_MESSAGE, DUPLICATE_EMAIL_ERROR_MESSAGE,
 } = require('../utils/constants');
 
 const getCurrentUser = (req, res, next) => {
@@ -40,9 +40,14 @@ const updateCurrentUser = (req, res, next) => {
       res.status(200).send(user);
     })
     .catch((err) => {
-      if (err.name === VALIDATION_ERROR_NAME) {
-        throw new BadRequestError(err.message);
+      if (err.name === 'ValidationError') {
+        throw new BadRequestError(BAD_REQUEST);
+      } else if (err.name === 'CastError') {
+        throw new BadRequestError(INVALID_USER_ID_MESSAGE);
+      } else if (err.codeName === 'DuplicateKey') {
+        throw new ConflictError(DUPLICATE_EMAIL_ERROR_MESSAGE);
       }
+      return next(err);
     })
     .catch(next);
 };
@@ -81,7 +86,7 @@ const createUser = (req, res, next) => {
       });
     })
     .catch((err) => {
-      if (err.name === VALIDATION_ERROR_NAME) {
+      if (err.name === 'ValidationError') {
         throw new BadRequestError(err.message);
       }
       if (err.code === 11000) {
