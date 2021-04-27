@@ -39,7 +39,7 @@ const createMovie = (req, res, next) => {
 };
 
 const deleteMovie = (req, res, next) => {
-  const owner = req.body._id;
+  const owner = req.user._id;
   const { movieId } = req.params;
 
   Movie.findById(movieId)
