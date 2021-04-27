@@ -7,7 +7,6 @@ const User = require('../models/user');
 
 const BadRequestError = require('../errors/BadRequestError');
 const ConflictError = require('../errors/ConflictError');
-const NotAuthError = require('../errors/NotAuthError');
 
 const {
   BAD_REQUEST, INVALID_USER_ID_MESSAGE, DUPLICATE_EMAIL_ERROR_MESSAGE, USER_CONFLICT_MESSAGE,
@@ -64,9 +63,6 @@ const login = (req, res, next) => {
       );
 
       res.send({ token });
-    })
-    .catch((err) => {
-      throw new NotAuthError(err.message);
     })
     .catch(next);
 };
