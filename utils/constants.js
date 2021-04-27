@@ -14,7 +14,6 @@ const NOT_FOUND_USER_ID_MESSAGE = 'Нет пользователя с таким
 const DUPLICATE_EMAIL_ERROR_MESSAGE = 'Пользователь с таким email уже существует';
 
 const MONGO_DB_ADDRESS = 'mongodb://localhost:27017/bitfilmsdb';
-const PORT_NUMBER = 3000;
 
 const USER_SCHEMA_REQUIRED_MESSAGES = {
   EMAIL: 'Поле "email - электронная почта" является обязательным',
@@ -57,7 +56,6 @@ module.exports = {
   ERROR_KIND_OBJECT_ID,
   NOT_AUTH_ERROR_WRONG_EMAIL_PASSWORD,
   MONGO_DB_ADDRESS,
-  PORT_NUMBER,
   USER_SCHEMA_REQUIRED_MESSAGES,
   USER_SCHEMA_VALIDATE_MESSAGES,
   MOVIE_SCHEMA_REQUIRED_MESSAGES,

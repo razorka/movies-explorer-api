@@ -26,6 +26,7 @@ const app = express();
 const allowedCors = [
   'http://localhost:3000',
   'api.movies-razorka.nomoredomains.icu',
+  'https://api.movies-razorka.nomoredomains.icu',
 ];
 
 app.use(cors({
