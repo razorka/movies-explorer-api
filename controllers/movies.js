@@ -39,7 +39,7 @@ const createMovie = (req, res, next) => {
 };
 
 const deleteMovie = (req, res, next) => {
-  Movie.findById(req.params.movieId).select('+owner')
+  Movie.findById(req.params.movieId)
     .then((movie) => {
       if (!movie) {
         throw new NotFoundError(NOT_FOUND_MOVIE_ERROR_MESSAGE);
@@ -47,7 +47,7 @@ const deleteMovie = (req, res, next) => {
         throw new ForbiddenError(FORBIDDEN_DELETE_MOVIE_MESSAGE);
       }
 
-      Movie.findByIdAndDelete(req.params.movieId).select('-owner')
+      Movie.findByIdAndDelete(req.params.movieId)
         .then((deletedMovie) => res.status(200).send(deletedMovie));
     })
     .catch(next);
