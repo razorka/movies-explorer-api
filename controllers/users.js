@@ -10,7 +10,7 @@ const ConflictError = require('../errors/ConflictError');
 const NotAuthError = require('../errors/NotAuthError');
 
 const {
-  BAD_REQUEST, INVALID_USER_ID_MESSAGE, DUPLICATE_EMAIL_ERROR_MESSAGE,
+  BAD_REQUEST, INVALID_USER_ID_MESSAGE, DUPLICATE_EMAIL_ERROR_MESSAGE, USER_CONFLICT_MESSAGE,
 } = require('../utils/constants');
 
 const getCurrentUser = (req, res, next) => {
@@ -87,11 +87,11 @@ const createUser = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        throw new BadRequestError(err.message);
+        throw new BadRequestError(BAD_REQUEST);
+      } else if (err.name === 'MongoError' && err.code === 11000) {
+        throw new ConflictError(USER_CONFLICT_MESSAGE);
       }
-      if (err.code === 11000) {
-        throw new ConflictError(err.message);
-      }
+      return next(err);
     })
     .catch(next);
 };

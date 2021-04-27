@@ -8,7 +8,7 @@ const NOT_AUTH_ERROR = 'Необходима авторизация';
 const NOT_AUTH_ERROR_WRONG_EMAIL_PASSWORD = 'Неправильные почта или пароль';
 const REQUEST_LOG_FILENAME = 'request.log';
 const ERROR_LOG_FILENAME = 'error.log';
-
+const USER_CONFLICT_MESSAGE = 'Пользователь с такими данными уже существует';
 const INVALID_USER_ID_MESSAGE = 'Введен невалидный id пользователя';
 const NOT_FOUND_USER_ID_MESSAGE = 'Нет пользователя с таким id';
 const DUPLICATE_EMAIL_ERROR_MESSAGE = 'Пользователь с таким email уже существует';
@@ -67,4 +67,5 @@ module.exports = {
   INVALID_USER_ID_MESSAGE,
   NOT_FOUND_USER_ID_MESSAGE,
   DUPLICATE_EMAIL_ERROR_MESSAGE,
+  USER_CONFLICT_MESSAGE,
 };
