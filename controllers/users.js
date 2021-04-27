@@ -41,7 +41,7 @@ const updateCurrentUser = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        throw new BadRequestError(BAD_REQUEST);
+        throw new BadRequestError(err.message);
       } else if (err.name === 'CastError') {
         throw new BadRequestError(INVALID_USER_ID_MESSAGE);
       } else if (err.codeName === 'DuplicateKey') {
