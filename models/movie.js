@@ -61,6 +61,7 @@ const movieSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
     required: [true, MOVIE_SCHEMA_REQUIRED_MESSAGES.OWNER],
+    select: false,
   },
   movieId: {
     type: Number,

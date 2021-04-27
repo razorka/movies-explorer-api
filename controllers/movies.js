@@ -8,6 +8,8 @@ const ForbiddenError = require('../errors/ForbiddenError');
 const {
   NOT_FOUND_MOVIE_ERROR_MESSAGE,
   FORBIDDEN_DELETE_MOVIE_MESSAGE,
+  BAD_REQUEST,
+  INTERNAL_SERVER_ERROR,
 } = require('../utils/constants');
 
 const getMovies = (req, res, next) => {
@@ -19,46 +21,19 @@ const getMovies = (req, res, next) => {
 };
 
 const createMovie = (req, res, next) => {
-  const {
-    country, director, duration, year, description,
-    image, trailer, nameRU, nameEN, thumbnail, movieId,
-  } = req.body;
   const owner = req.user._id;
 
-  Movie.create({
-    country,
-    director,
-    duration,
-    year,
-    description,
-    image,
-    trailer,
-    nameRU,
-    nameEN,
-    thumbnail,
-    movieId,
-    owner,
-  })
-    .then((movie) => res.status(200).send({
-      _id: movie._id,
-      country: movie.country,
-      director: movie.director,
-      duration: movie.duration,
-      year: movie.year,
-      description: movie.description,
-      image: movie.image,
-      trailer: movie.trailer,
-      nameRU: movie.nameRU,
-      nameEN: movie.nameEN,
-      thumbnail: movie.thumbnail,
-      movieId: movie.movieId,
-    }))
+  Movie.create({ owner, ...req.body })
+    .then((movie) => {
+      res.status(201).send({ data: movie });
+    })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        throw new BadRequestError(err.message);
-      } else if (err.code === 11000) {
-        throw new ConflictError(err.message);
+        throw new BadRequestError(BAD_REQUEST);
+      } else if (err.name === 'MongoError' && err.code === 11000) {
+        throw new ConflictError(INTERNAL_SERVER_ERROR);
       }
+      return next(err);
     })
     .catch(next);
 };
