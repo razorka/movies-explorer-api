@@ -39,23 +39,16 @@ const createMovie = (req, res, next) => {
 };
 
 const deleteMovie = (req, res, next) => {
-  const owner = req.user._id;
-  const { movieId } = req.params;
-
-  Movie.findById(movieId)
+  Movie.findById(req.params.movieId).select('+owner')
     .then((movie) => {
       if (!movie) {
         throw new NotFoundError(NOT_FOUND_MOVIE_ERROR_MESSAGE);
-      }
-      if (movie.owner.toString() !== owner) {
+      } else if (movie.owner.toString() !== req.user._id) {
         throw new ForbiddenError(FORBIDDEN_DELETE_MOVIE_MESSAGE);
-      } else {
-        Movie.findByIdAndDelete(movieId)
-          .then((deletedMovie) => {
-            res.status(200).send({ data: deletedMovie });
-          })
-          .catch(next);
       }
+
+      Movie.findByIdAndDelete(req.params.movieId).select('-owner')
+        .then((deletedMovie) => res.status(200).send(deletedMovie));
     })
     .catch(next);
 };
