@@ -4,11 +4,14 @@ const express = require('express');
 
 const { errors } = require('celebrate');
 
+const helmet = require('helmet');
+
 const bodyParser = require('body-parser');
 
 const cors = require('cors');
 
 const mongoose = require('mongoose');
+const rateLimiter = require('./middlewares/rateLimit');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const errorHandler = require('./middlewares/errorHandler');
@@ -56,6 +59,10 @@ app.get('/crash-test', () => {
 app.use('/', router);
 
 app.use(errorLogger);
+
+app.use(helmet());
+
+app.use(rateLimiter);
 
 app.use(errors());
 
