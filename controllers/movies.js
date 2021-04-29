@@ -24,20 +24,9 @@ const createMovie = (req, res, next) => {
   const owner = req.user._id;
 
   Movie.create({ owner, ...req.body })
-    .then((movie) => res.status(200).send({
-      _id: movie._id,
-      country: movie.country,
-      director: movie.director,
-      duration: movie.duration,
-      year: movie.year,
-      description: movie.description,
-      image: movie.image,
-      trailer: movie.trailer,
-      nameRU: movie.nameRU,
-      nameEN: movie.nameEN,
-      thumbnail: movie.thumbnail,
-      movieId: movie.movieId,
-    }))
+    .then((movie) => {
+      res.status(201).send({ data: movie });
+    })
     .catch((err) => {
       if (err.name === 'ValidationError') {
         throw new BadRequestError(BAD_REQUEST);
