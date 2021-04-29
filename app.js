@@ -11,12 +11,14 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const mongoose = require('mongoose');
-const rateLimiter = require('./middlewares/rateLimit');
+
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const errorHandler = require('./middlewares/errorHandler');
 
-require('dotenv').config();
+const rateLimiter = require('./middlewares/rateLimit');
+
+// require('dotenv').config();
 
 const {
   MONGO_DB_ADDRESS,
