@@ -16,7 +16,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const errorHandler = require('./middlewares/errorHandler');
 
-const rateLimiter = require('./middlewares/rateLimit');
+// const rateLimiter = require('./middlewares/rateLimit');
 
 // require('dotenv').config();
 
@@ -64,7 +64,7 @@ app.use(errorLogger);
 
 app.use(helmet());
 
-app.use(rateLimiter);
+// app.use(rateLimiter);
 
 app.use(errors());
 
