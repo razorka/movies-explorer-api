@@ -4,7 +4,7 @@ const express = require('express');
 
 const { errors } = require('celebrate');
 
-const helmet = require('helmet');
+// const helmet = require('helmet');
 
 const bodyParser = require('body-parser');
 
@@ -18,7 +18,7 @@ const errorHandler = require('./middlewares/errorHandler');
 
 // const rateLimiter = require('./middlewares/rateLimit');
 
-// require('dotenv').config();
+require('dotenv').config();
 
 const {
   MONGO_DB_ADDRESS,
@@ -62,7 +62,7 @@ app.use('/', router);
 
 app.use(errorLogger);
 
-app.use(helmet());
+// app.use(helmet());
 
 // app.use(rateLimiter);
 
