@@ -32,8 +32,6 @@ const allowedCors = [
   'http://localhost:3000',
   'api.movies-razorka.nomoredomains.icu',
   'https://api.movies-razorka.nomoredomains.icu',
-  'movies-razorka.nomoredomains.club',
-  'https://movies-razorka.nomoredomains.club',
 ];
 
 app.use(cors({
